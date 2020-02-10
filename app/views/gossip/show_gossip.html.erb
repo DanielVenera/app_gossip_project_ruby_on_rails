@@ -1,10 +1,13 @@
 <h1><%= @gossip.title %></h1>
-
-<p> 
+<hr>
+<p class="gossip"> 
     <%= @gossip.content%>
+</p>
+<p>    
     <br>
-    <%= "Written by #{@gossip.user.first_name}"%>
+    <span> Written by </span><a href="/author/<%= @gossip.user_id %>"><%= @gossip.user.first_name %></a>
     <br>
-    <%= "On #{@gossip.created_at}"%>
-    </p>
+    <%= "On #{(@gossip.created_at.to_s)[0..9]}"%>
+</p>
+
 

@@ -13,3 +13,24 @@
  *= require_tree .
  *= require_self
  */
+
+ h1, h2 {
+     text-align: center;
+ }
+
+ p {
+    text-align: center;
+    font-size: 24px;
+ }
+
+ blockquote {
+     text-align: center;
+     font-style: italic;
+ }
+ 
+ .gossip {
+     width: 500px;
+     margin: auto;
+     color: tomato;
+     font-weight: bolder;
+ }

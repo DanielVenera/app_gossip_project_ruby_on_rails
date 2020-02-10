@@ -1,4 +1,5 @@
 class HomeController < ApplicationController
-  def all_gossips
-  end
+    def show
+        @gossips = Gossip.all
+    end
 end
