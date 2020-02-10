@@ -1,0 +1,10 @@
+<h1><%= @gossip.title %></h1>
+
+<p> 
+    <%= @gossip.content%>
+    <br>
+    <%= "Written by #{@gossip.user.first_name}"%>
+    <br>
+    <%= "On #{@gossip.created_at}"%>
+    </p>
+

@@ -1,0 +1,31 @@
+<h1>
+    <%= @user.first_name  %> <%= @user.last_name %>
+</h1>
+
+<p>
+    <% if @user.age.class == Integer then %>
+    <%= "#{@user.age} years"%>
+    <% end %>
+</p>
+
+<p>
+    <%= @user.description %>
+</p>
+
+<p>
+    <% if @user.email.class == String then %>
+    You can contact me by <a href="mailto:<%= @user.email %>">email</a>
+    <% end %>
+<p> 
+    Here are my gossips :
+</p>
+<p>
+    <% @gossips.each do |gossip| %>
+        <p>
+          <% if gossip.user_id == @user.id then %>
+          <a href="/gossip/show_gossip/<%= gossip.id.to_i %>"><%= gossip.title %></a>
+        </p>
+      <% end %>
+    <% end %>
+</p>
+
