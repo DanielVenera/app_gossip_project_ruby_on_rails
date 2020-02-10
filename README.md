@@ -1,14 +1,9 @@
 The Hacking Project Week 6
-<br>
-Needs :
 
-rails postgresql
+bundle install first
 
-gem 'faker'
+Needs : rails postgresql + gem 'faker'
 
-<br>
-you can run the server with :
+Run the server with : rails server
 
-rails server
-<br>
 Enjoy !
