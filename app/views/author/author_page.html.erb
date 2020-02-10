@@ -23,7 +23,7 @@
     <% @gossips.each do |gossip| %>
         <p>
           <% if gossip.user_id == @user.id then %>
-          <a href="/gossip/show_gossip/<%= gossip.id.to_i %>"><%= gossip.title %></a>
+          <a href="/gossip/<%= gossip.id.to_i %>"><%= gossip.title %></a>
         </p>
       <% end %>
     <% end %>
