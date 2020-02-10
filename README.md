@@ -6,6 +6,7 @@ rails postgresql
 
 gem 'faker'
 
+
 you can run the server with :
 
 rails server
