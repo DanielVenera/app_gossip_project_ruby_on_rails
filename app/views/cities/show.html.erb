@@ -1,0 +1,12 @@
+<h1>
+    <%= @city.name %>
+</h1>
+        <% @gossip.each do |gossip| %>
+        <p>
+          <% if User.find_by(city: @city.id).id == gossip.user.id then %>
+          <a href="/gossip/<%= gossip.id.to_i %>"><%= gossip.title %></a>
+        </p>
+      <% end %>
+    <% end %>
+</p>
+

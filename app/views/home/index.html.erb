@@ -1,15 +1,18 @@
-
-<h1>Welcome !</h1>
-<hr>
+<div class="jumbotron">
+  <h1 class="display-4">Welcome in The Gossip Project!</h1>
+  <p class="lead">A network where you can snitch around and destroy lives !</p>
+</div>
 <h2>Here are all the gossips</h2>
-<div class="row d-flex justify-content-center align-items-center align-content-center mb-3">
+<div class="list-group m-auto" style="width: 600px">
   <% @gossips.each do |gossip| %>
-    <div class="card" style="width: 18rem; height: 300px">
-      <div class="card-body">
-        <h5 class="card-title" style="height: 50px"><%= (gossip.title) %></h5>
-        <p class="card-text" ><%= (gossip.content)[0..45] %>...  </p>
-        <a href="/gossip/<%= gossip.id.to_i %>" class="btn btn-primary ml-5">Read the gossip</a>
+    <a href="/gossip/<%= gossip.id.to_i %>" class="list-group-item list-group-item-action">
+      <div class="d-flex w-100 justify-content-between">
+        <h5 class="mb-1"><%= (gossip.title) %></h5>
       </div>
-    </div>
+      <p class="mb-1"><%= (gossip.content)[0..45] %></p>
+    </a>
   <% end %>
 </div>
+
+
+  

@@ -11,8 +11,9 @@ class User < ApplicationRecord
     validates :age, 
     presence: true,
     length: { maximum: 4 }
-    belongs_to :city,
-    optional: true
+    validates :city,
+    presence: true
+    belongs_to :city
     has_many :comments
     has_many :gossips
     has_many :sent_messages, foreign_key: 'sender_id', class_name: "PrivateMessage"

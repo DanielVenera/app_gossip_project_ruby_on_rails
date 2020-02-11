@@ -7,6 +7,8 @@
     <br>
     <span> Written by </span><a href="/author/<%= @gossip.user_id %>"><%= @gossip.user.first_name %></a>
     <br>
+    <span> In <%= @gossip.user.city.name %></a>
+    <br>
     <%= "On #{(@gossip.created_at.to_s)[0..9]}"%>
 </p>
 

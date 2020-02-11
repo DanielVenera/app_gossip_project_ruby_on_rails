@@ -3,22 +3,19 @@
 </h1>
 
 <p>
-    <% if @user.age.class == Integer then %>
     <%= "#{@user.age} years"%>
-    <% end %>
 </p>
 
 <blockquote>
     <%= @user.description %>
 </blockquote>
 
+<p> You can contact me by <a href="mailto:<%= @user.email %>">email</a> </p>
+<p> I live in <%= @user.city.name %></p>
 <p>
-    <% if @user.email.class == String then %>
-    You can contact me by <a href="mailto:<%= @user.email %>">email</a>
-    <% end %>
-<p> 
     Here are my gossips :
 </p>
+
 <p>
     <% @gossips.each do |gossip| %>
         <p>

@@ -25,6 +25,10 @@
       <%= text_field_tag 'age', @user.age%>
       <br /> <br />
 
+      <%= label_tag 'City' %>
+      <%= text_field_tag 'city', @city.name %>
+      <br /> <br />
+
       <%= label_tag 'Email' %>
       <%= text_field_tag 'email', @user.email%>
       <br /> <br />
@@ -35,7 +39,7 @@
 </div>
 
 
-<% if @gossip.errors.any? || @user.errors.any? then %>
+<% if @gossip.errors.any? || @user.errors.any? || @city.errors.any? then %>
     <div class="alert alert-danger m-auto" style="width: 600px" role="alert">
         <div id="error_explanation">
             <h2>Validation Error</h2>
@@ -46,6 +50,9 @@
                 <% unless msg.include? "User" %>
                         <p><%= msg %></p>
                 <% end %>     
+            <% end %>
+            <% @city.errors.full_messages.each do |msg| %>
+                <p><%= msg %></p>
             <% end %>
         </div>
     </div>
