@@ -1,0 +1,15 @@
+
+<h1>Welcome !</h1>
+<hr>
+<h2>Here are all the gossips</h2>
+<div class="row d-flex justify-content-center align-items-center align-content-center mb-3">
+  <% @gossips.each do |gossip| %>
+    <div class="card" style="width: 18rem; height: 300px">
+      <div class="card-body">
+        <h5 class="card-title" style="height: 50px"><%= (gossip.title) %></h5>
+        <p class="card-text" ><%= (gossip.content)[0..45] %>...  </p>
+        <a href="/gossip/<%= gossip.id.to_i %>" class="btn btn-primary ml-5">Read the gossip</a>
+      </div>
+    </div>
+  <% end %>
+</div>

@@ -1,5 +1,5 @@
 class AuthorController < ApplicationController
-def author_page
+def show
     @user = User.find(params["id"])
     @gossips = Gossip.all
 end
