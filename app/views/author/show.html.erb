@@ -11,7 +11,7 @@
 </blockquote>
 
 <p> You can contact me by <a href="mailto:<%= @user.email %>">email</a> </p>
-<p> I live in <%= @user.city.name %></p>
+<p> I live in <a href="/cities/<%= @user.city.id %>"><%= @user.city.name %></a></p>
 <p>
     Here are my gossips :
 </p>

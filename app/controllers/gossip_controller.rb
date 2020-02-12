@@ -1,6 +1,7 @@
 class GossipController < ApplicationController
+  before_action :find_post, only: [:show, :edit, :update, :destroy]
   def show
-    @gossip = Gossip.find(params["id"])
+    @comment = Comment.where(gossip_id: @gossip.id)
   end
 
   def create
@@ -22,4 +23,28 @@ class GossipController < ApplicationController
     @user = User.new
     @gossip = Gossip.new
   end
+
+  def edit
+  end
+
+  def update
+    gossip_params = params.require(:gossip).permit(:title, :content)
+    if @gossip.update(gossip_params)
+      redirect_to @gossip
+    else
+      :edit
+    end
+  end
+
+  def destroy
+    @gossip.destroy
+    redirect_to "/"
+  end
 end
+
+private
+
+def find_post
+  @gossip = Gossip.find(params[:id])
+end
+

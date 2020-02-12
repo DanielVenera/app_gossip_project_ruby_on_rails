@@ -2,6 +2,34 @@
 <h1>Create a gossip</h1>
 <hr>
 
+<% if @gossip.errors.any? || @user.errors.any? || @city.errors.any? then %>
+    <div class="alert alert-danger m-auto" style="width: 600px" role="alert">
+        <div id="error_explanation">
+            <h2>Validation Error</h2>
+            <% @user.errors.full_messages.each do |msg| %>
+                <p><%= msg %></p>
+            <% end %>
+            <% @gossip.errors.full_messages.each do |msg| %>
+                <% unless msg.include? "User" %>
+                        <p><%= msg %></p>
+                <% end %>     
+            <% end %>
+            <% @city.errors.full_messages.each do |msg| %>
+                <p><%= msg %></p>
+            <% end %>
+        </div>
+    </div>
+<% end %>
+
+<% if @success == true then %>
+<div class="alert alert-success" role="alert">
+  <p>You have created a gossip successfully !</p>
+</div>
+<script type="text/javascript">
+setTimeout("window.location='/'",5000);
+</script> 
+<% end %>
+
 <div class="ml-5" style="width: 600px">
 <%= form_tag url_for(action: 'create'), method: "post" do %>
 
@@ -39,30 +67,3 @@
 </div>
 
 
-<% if @gossip.errors.any? || @user.errors.any? || @city.errors.any? then %>
-    <div class="alert alert-danger m-auto" style="width: 600px" role="alert">
-        <div id="error_explanation">
-            <h2>Validation Error</h2>
-            <% @user.errors.full_messages.each do |msg| %>
-                <p><%= msg %></p>
-            <% end %>
-            <% @gossip.errors.full_messages.each do |msg| %>
-                <% unless msg.include? "User" %>
-                        <p><%= msg %></p>
-                <% end %>     
-            <% end %>
-            <% @city.errors.full_messages.each do |msg| %>
-                <p><%= msg %></p>
-            <% end %>
-        </div>
-    </div>
-<% end %>
-
-<% if @success == true then %>
-<div class="alert alert-success" role="alert">
-  <p>You have created a gossip successfully !</p>
-</div>
-<script type="text/javascript">
-setTimeout("window.location='/'",5000);
-</script> 
-<% end %>

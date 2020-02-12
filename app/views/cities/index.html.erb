@@ -1,0 +1,14 @@
+<h1>All cities</h1>
+<hr>
+
+<div class="list-group m-auto" style="width: 600px">
+  <% @cities.each do |city| %>
+  <% unless city.users.count == 0 %>
+    <a href="<%= city_path(city.id) %>" class="list-group-item list-group-item-action">
+      <div class="d-flex w-100 justify-content-between">
+        <h5 class="mb-1"><%= (city.name) %></h5>
+      </div>
+      
+    </a>
+    <% end %>
+  <% end %>

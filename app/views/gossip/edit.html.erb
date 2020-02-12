@@ -1,0 +1,7 @@
+<div class="ml-5" style="width: 600px">
+<%= form_with model: @gossip, class: "nifty_form" do |f| %>
+  <%= f.text_field :title %>
+  <%= f.text_area :content, size: "60x12" %>
+  <%= f.submit "Edit Post" %>
+<% end %>
+</div>
