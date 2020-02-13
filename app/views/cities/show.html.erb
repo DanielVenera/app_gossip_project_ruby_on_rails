@@ -1,13 +1,20 @@
 <h1>
-    <%= @city.name %>
+  <%= @city.name %>
 </h1>
-        <% @gossip.each do |gossip| %>
-        <p>
-          <% if User.find_by(city: @city.id).id == gossip.user.id then %>
-          <a href="/gossip/<%= gossip.id.to_i %>"><%= gossip.title %></a></p>
-          <p><%= gossip.likes.count %> <%= gossip.likes.count == 1 ? 'Like' : 'Likes' %></p>
-        </p>
-      <% end %>
+<% @gossip.each do |gossip| %>
+  <p>
+    <% if User.find_by(city: @city.id).id == gossip.user.id  %>
+      <a href="/gossip/<%= gossip.id.to_i %>"><%= gossip.title %></a></p>
+    <p>
+      <%= gossip.likes.count %> <%= gossip.likes.count == 1 ? 'Like' : 'Likes' %>
+    </p>
     <% end %>
+  </p>  
+<% end %>
+<p>All gossipers</p>
+<% @users.each do |user| %>
+<% if user.city_id == @city.id %>
+<p><a href="<%= author_path(user.id)%>"><%= user.first_name %> <%= user.last_name %></a></p>
+<% end %>
+<% end %>
 </p>
-

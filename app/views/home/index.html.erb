@@ -10,8 +10,10 @@
       <div class="d-flex w-100 justify-content-between">
         <h5 class="mb-1 font-weight-bold"><%= (gossip.title) %></h5>
       </div>
-      <p class="mb-1"><%= (gossip.content)[0..45] %></p>
+      <p class="mb-1"><%= (gossip.content)[0..40] %>...</p>
+      <% unless gossip.likes.count == 0%>
       <div class="mb-1 d-flex justify-content-end"><%= gossip.likes.count %> <%= fa_icon "heart" %></div>
+      <% end %>
       <% unless gossip.comments.count == 0%>
       <div class="mb-1 d-flex justify-content-end"><%= gossip.comments.count %> <%= gossip.comments.count == 1 ? 'comment' : 'comments' %></div>
       <% end %>

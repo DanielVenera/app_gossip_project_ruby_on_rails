@@ -24,9 +24,10 @@ class CommentsController < ApplicationController
   end
 
   def destroy
+    @gossip = Gossip.find(params[:gossip_id])
     @comment = Comment.find(params[:id])
     @comment.destroy
-    redirect_to "/"
+    redirect_to gossip_path(@gossip.id)
   end
 end
 

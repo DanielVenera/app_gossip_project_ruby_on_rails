@@ -4,12 +4,14 @@ class SessionsController < ApplicationController
 
   def create
     @user = User.find_by(email: params[:email])
+    flash[:danger] = ' '
     if @user && @user.authenticate(params[:password])
+      flash[:danger] = 'Good !'
       session[:user_id] = @user.id 
       @success = true
-      render new_session_path
+      render 'new'
     else 
-      flash.now[:danger] = 'Invalid email or password'
+      flash[:danger] = 'Invalid email or password'
       render 'new'
     end
   end

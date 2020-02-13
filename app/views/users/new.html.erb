@@ -17,7 +17,7 @@
 <%# SUCCESS %>
 <% if @success == true then %>
 <div class="alert alert-success" role="alert">
-  <p>Welcome home <%= @user.first_name %> !</p>
+  <p>Welcome <%= @user.first_name %> !</p>
 </div>
 <script type="text/javascript">
 setTimeout("window.location='/'",3000);
@@ -40,7 +40,7 @@ setTimeout("window.location='/'",3000);
       <br /> <br />
 
       <%= label_tag 'City' %>
-      <%= text_field_tag 'city', @city.name %>
+      <%= text_field_tag 'city', @user.city %>
       <br /> <br />
 
       <%= label_tag 'Email' %>

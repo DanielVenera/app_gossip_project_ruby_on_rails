@@ -39,7 +39,7 @@ end
 count = 0
 20.times do
   count += 1
-  Gossip.create(id: count, title: Faker::Book.title, content: "Apparently, #{Faker::TvShows::GameOfThrones.character} said to #{Faker::TvShows::GameOfThrones.character}: '#{[Faker::TvShows::Friends.quote, Faker::TvShows::RuPaul.quote].sample}'", user_id: User.find(rand(1..10)).id)
+  Gossip.create(id: count, title: Faker::Book.title, content: "Apparently, #{Faker::TvShows::GameOfThrones.character} said to #{Faker::TvShows::GameOfThrones.character}:\n\n '#{[Faker::TvShows::Friends.quote, Faker::TvShows::RuPaul.quote].sample}'", user_id: User.find(rand(1..10)).id)
 end
 
 #TAGS

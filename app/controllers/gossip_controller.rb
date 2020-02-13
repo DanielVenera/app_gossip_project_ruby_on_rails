@@ -3,7 +3,7 @@ class GossipController < ApplicationController
   include SessionsHelper
 
   def show
-    @comment = Comment.where(gossip_id: @gossip.id)
+    @comment = Comment.where(gossip_id: @gossip.id).sort_by(&:id).reverse
   end
 
   def create
