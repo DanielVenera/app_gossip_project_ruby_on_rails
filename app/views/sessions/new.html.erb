@@ -1,0 +1,31 @@
+
+<h1>Log in</h1>
+<hr>
+
+<%# SUCCESS %>
+<% if @success == true then %>
+<div class="alert alert-success" role="alert">
+  <p>Welcome home <%= @user.first_name %> !</p>
+</div>
+<script type="text/javascript">
+setTimeout("window.location='/'",3000);
+</script> 
+<% end %>
+
+<div class="ml-5" style="width: 600px">
+<%= form_tag url_for(action: 'create'), method: "post" do %>
+
+      <%= label_tag 'Email' %>
+      <%= text_field_tag 'email'%>
+      <br /> <br />
+
+      <%= label_tag 'Password' %>
+      <%= text_field_tag 'password'%>
+      <br /> <br />
+
+      <%= submit_tag "Log in" %>
+
+<% end %>
+</div>
+
+

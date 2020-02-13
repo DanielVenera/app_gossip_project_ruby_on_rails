@@ -83,6 +83,7 @@ ActiveRecord::Schema.define(version: 2020_02_06_103406) do
     t.text "description"
     t.string "email"
     t.integer "age"
+    t.string "password_digest"
     t.bigint "city_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

@@ -1,24 +1,20 @@
-<div class="jumbotron">
-  <h1 class="display-4">Welcome in The Gossip Project!</h1>
-  <p class="lead">A network where you can snitch around and destroy lives !</p>
+<div class="jumbotron bg-primary">
+  <h1 class="display-4 text-white">The Gossip Project</h1>
+  <p class="lead font-italic text-white">Snitch around and destroy lives !</p>
 </div>
-<h2>Here are all the gossips</h2>
+<h2>All the gossips</h2>
+<br>
 <div class="list-group m-auto" style="width: 600px">
   <% @gossips.each do |gossip| %>
     <a href="<%= gossip_path(gossip.id) %>" class="list-group-item list-group-item-action">
       <div class="d-flex w-100 justify-content-between">
-        <h5 class="mb-1"><%= (gossip.title) %></h5>
+        <h5 class="mb-1 font-weight-bold"><%= (gossip.title) %></h5>
       </div>
       <p class="mb-1"><%= (gossip.content)[0..45] %></p>
-      <% if gossip.comments.count == 1 %>
-      <p class="mb-1"><%= gossip.comments.count %> comment</p>
-      <% end %>
-      <% if gossip.comments.count > 1 %>
-      <p class="mb-1"><%= gossip.comments.count %> comments</p>
+      <div class="mb-1 d-flex justify-content-end"><%= gossip.likes.count %> <%= fa_icon "heart" %></div>
+      <% unless gossip.comments.count == 0%>
+      <div class="mb-1 d-flex justify-content-end"><%= gossip.comments.count %> <%= gossip.comments.count == 1 ? 'comment' : 'comments' %></div>
       <% end %>
     </a>
   <% end %>
 </div>
-
-
-  

@@ -15,7 +15,6 @@ Tag.destroy_all
 GossipAndTag.destroy_all
 Comment.destroy_all
 Like.destroy_all
-
 PrivateMessage.destroy_all
 
 #CITIES
@@ -33,14 +32,14 @@ count = 0
   count += 1
   f_name = Faker::Name.first_name
   l_name = Faker::Name.last_name
-  User.create(id: count, first_name: f_name, last_name: l_name, description: Faker::Movie.quote, email: "#{f_name.downcase}.#{l_name.downcase}@gmail.com", age: rand(10..30), city: City.find(rand(1..10)))
+  User.create(password: Faker::Creature::Animal.name, id: count, first_name: f_name, last_name: l_name, description: Faker::Movie.quote, email: "#{f_name.downcase}.#{l_name.downcase}@gmail.com", age: rand(10..30), city: City.find(rand(1..10)))
 end
 
 #GOSSIPS
 count = 0
 20.times do
   count += 1
-  Gossip.create(id: count, title: Faker::Book.title, content: "Apparently, #{Faker::TvShows::GameOfThrones.character} said to #{Faker::TvShows::GameOfThrones.character}: '#{[Faker::TvShows::Friends.quote, Faker::TvShows::RuPaul.quote].sample}'", user: User.find(rand(1..10)))
+  Gossip.create(id: count, title: Faker::Book.title, content: "Apparently, #{Faker::TvShows::GameOfThrones.character} said to #{Faker::TvShows::GameOfThrones.character}: '#{[Faker::TvShows::Friends.quote, Faker::TvShows::RuPaul.quote].sample}'", user_id: User.find(rand(1..10)).id)
 end
 
 #TAGS
@@ -101,4 +100,5 @@ count = 0
   #so there are no entries for the comment (it is possible with "optional: true" in the like.rb)
   #but we will have an entry for gossip because c will be an id between 1 and 10
 end
+
 puts "Seeds loaded"

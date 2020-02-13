@@ -1,69 +1,37 @@
-
 <h1>Create a gossip</h1>
 <hr>
-
-<% if @gossip.errors.any? || @user.errors.any? || @city.errors.any? then %>
-    <div class="alert alert-danger m-auto" style="width: 600px" role="alert">
-        <div id="error_explanation">
-            <h2>Validation Error</h2>
-            <% @user.errors.full_messages.each do |msg| %>
-                <p><%= msg %></p>
-            <% end %>
-            <% @gossip.errors.full_messages.each do |msg| %>
-                <% unless msg.include? "User" %>
-                        <p><%= msg %></p>
-                <% end %>     
-            <% end %>
-            <% @city.errors.full_messages.each do |msg| %>
-                <p><%= msg %></p>
-            <% end %>
-        </div>
+<% if @gossip.errors.any? %>
+  <div class="alert alert-danger m-auto" style="width: 600px" role="alert">
+    <div id="error_explanation">
+      <h2>Validation Error</h2>
+      <% @gossip.errors.full_messages.each do |msg| %>
+          <p><%= msg %></p>
+      <% end %>
     </div>
+  </div>
 <% end %>
-
 <% if @success == true then %>
-<div class="alert alert-success" role="alert">
-  <p>You have created a gossip successfully !</p>
-</div>
-<script type="text/javascript">
-setTimeout("window.location='/'",5000);
-</script> 
+  <div class="alert alert-success" role="alert">
+    <p>You have created a gossip successfully !</p>
+  </div>
+  <script type="text/javascript">
+    setTimeout("window.location='/'",3000);
+  </script>
 <% end %>
-
-<div class="ml-5" style="width: 600px">
-<%= form_tag url_for(action: 'create'), method: "post" do %>
-
-      <%= label_tag 'Title' %>
+<% if current_user %>
+  <div class="ml-5" style="width: 600px">
+    <%= form_tag url_for(action: 'create'), method: "post" do %>
+      <%= label_tag 'Title *' %>
       <%= text_field_tag 'title', @gossip.title%>
-      <br /> <br />
-
-      <%= label_tag 'Content' %>
+      <br />
+      <br />
+      <%= label_tag 'Content *' %>
       <%= text_area_tag 'content', @gossip.content%>
-      <br /> <br />
-
-      <%= label_tag 'First Name' %>
-      <%= text_field_tag 'first_name', @user.first_name%>
-      <br /> <br />
-
-      <%= label_tag 'Last Name' %>
-      <%= text_field_tag 'last_name', @user.last_name%>
-      <br /> <br />
-
-      <%= label_tag 'Age' %>
-      <%= text_field_tag 'age', @user.age%>
-      <br /> <br />
-
-      <%= label_tag 'City' %>
-      <%= text_field_tag 'city', @city.name %>
-      <br /> <br />
-
-      <%= label_tag 'Email' %>
-      <%= text_field_tag 'email', @user.email%>
-      <br /> <br />
-
+      <br />
+      <br />
       <%= submit_tag "Create Post" %>
-
-<% end %>
-</div>
-
-
+    <% end %>
+  <% else %>
+    <p> If you want to gossip, please <a href="<%= new_user_path %>">create an account </a> or <a href="<%= new_session_path %>">log in</a>
+    <% end %>
+  </div>

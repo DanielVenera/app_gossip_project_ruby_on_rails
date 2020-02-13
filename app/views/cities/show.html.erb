@@ -4,7 +4,8 @@
         <% @gossip.each do |gossip| %>
         <p>
           <% if User.find_by(city: @city.id).id == gossip.user.id then %>
-          <a href="/gossip/<%= gossip.id.to_i %>"><%= gossip.title %></a>
+          <a href="/gossip/<%= gossip.id.to_i %>"><%= gossip.title %></a></p>
+          <p><%= gossip.likes.count %> <%= gossip.likes.count == 1 ? 'Like' : 'Likes' %></p>
         </p>
       <% end %>
     <% end %>

@@ -1,50 +1,53 @@
 <h1><%= @gossip.title %></h1>
-
 <hr>
-
-<p class="gossip"> 
-    <%= @gossip.content%>
+<p class="gossip">
+  <%= @gossip.content%>
 </p>
-
-<p>    
-    <br>
-    <span> Written by </span><a href="<%= author_path(@gossip.id) %>"><%= @gossip.user.first_name %></a>
-    <br>
-    <span> In <a href="<%= city_path(@gossip.user.city.id) %>"><%= @gossip.user.city.name %></a>
+<p>
+  <br>
+  <span> Written by </span><a href="<%= author_path(@gossip.id) %>"><%= @gossip.user.first_name %></a>
+  <br>
+  <span> In <a href="<%= city_path(@gossip.user.city.id) %>"><%= @gossip.user.city.name %></a>
     <br>
     <%= "On #{(@gossip.created_at.to_s)[0..9]}"%>
     <br>
-    <a href="<%= edit_gossip_path(@gossip.id) %>" class="btn btn-primary">Edit</a>
-    <a href="<% gossip_path(@gossip.id) %>" data-confirm="Are you sure ?" data-method="DELETE" class="btn btn-danger">Delete</a>
-</p>
-
-<h2>Add a comment:</h2>
-<%= form_with(model: [ @gossip, @gossip.comments.build ], local: true) do |form| %>
-  <p>
-    <%= form.label :content %><br>
-    <%= form.text_area :content %>
-  </p>
-     <p>
-    <%= form.label :user_id %><br>
-    <%= form.text_area :user_id %>
-  </p>
-  <p>
-    <%= form.submit %>
-  </p>
-<% end %>
-
-
-<% if @gossip.comments.size >= 2 %>
-  <h2>All comments :</h2>
+    
+      <%= @gossip.likes.count %><%= fa_icon "heart" %>
+      
+    <% if current_user %>
+    <div class="col-1 mx-auto" style="width: 1000px">
+      <%= button_to "Like", gossip_likes_path(@gossip), method: :post %>
+    </div>
+      <p><%= flash[:message] %></p>
+      
+      
+      <p> 
+      <% if current_user == @gossip.user %>
+        <a href="<%= edit_gossip_path(@gossip.id) %>" class="btn btn-primary">Edit</a>
+        <a href="<% gossip_path(@gossip.id) %>" data-confirm="Are you sure ?" data-method="DELETE" class="btn btn-danger">Delete</a>
+      <% end %>
+      </p>
+    </p>
+    <h2>Add a comment:</h2>
+    <%= form_with(model: [ @gossip, @gossip.comments.build ], local: true) do |form| %>
+      <p>
+        <%= form.text_area :content %>
+      </p>
+      <p>
+        <%= form.submit %>
+      </p>
+    <% end %>
+  <% else %>
+    <p> To add a like or a comment, please <a href ="<%= new_user_path%>">create an account</a> or <a href ="<%= new_session_path%>">log in</a></p>
+  <% end %>
+  <% if @gossip.comments.size >= 2 %>
+    <h2>All comments :</h2>
     <% @gossip.comments.each do |comment| %>
-    <% @user = comment.user %>
+      <% @user = comment.user %>
       <% unless comment.id.class == NilClass %>
-        <p> <%= @user.first_name %> </p>
+        <p> <%= @user.first_name  %> </p>
         <p> <%= comment.content %> </p>
         <p><a href="/gossip/<%= @gossip.id %>/comments/<%= comment.id %>/edit" class="btn btn-primary">Edit the comment</a></p>
       <% end %>
-    <% end %> 
-<% end %>
-
-
-
+    <% end %>
+  <% end %>
